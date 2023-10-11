@@ -1,10 +1,7 @@
 
 @extends('layout.app')
-
+@section('title', 'Home')
 @section('content')
-@section('title')
-home
-@endsection
 
     <table class="table">
   <thead>
@@ -23,7 +20,11 @@ home
         <td>{{ $data->nik }}</td>
         <td>{{ $data->isi_laporan }}</td>
         <td><img width="200px" src='{{asset("images/$data->foto")}}' /></td>
-        <td><a href="{{ url('delete')}}" class="btn btn-danger">Hapus</a></td>
+        <td>
+          <a href="/hapus-pengaduan/{{$data->id_pengaduan}}"><button class="btn btn-danger">Hapus</button></a>
+          <a href="/detail-pengaduan/{{$data->id_pengaduan}}" ><button class="btn btn-info">Detail</button></a>
+          <a href="/update/{{$data->id_pengaduan}}" ><button class="btn btn-success">Update</button></a>
+        </td>
       </tr>
     @endforeach
   </tbody>

@@ -1,10 +1,6 @@
 @extends('layout.app')
 
-@section('title')
-<title>isi laporan</title>
-@endsection
-
-
+@section('title', 'Buat Laporan')
 @section('content')
 
     @if ($errors->any())
