@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Masyarakat;
 use App\Models\Pengaduan;
-
+use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
 {
     function index()
     {
+
         $data = Pengaduan::all();
 
         return view('home', ['data' => $data]);
@@ -20,7 +21,6 @@ class PengaduanController extends Controller
 
     function tampil_isi_pengaduan()
     {
-
         return view('isi-pengaduan');
     }
 
@@ -93,13 +93,17 @@ class PengaduanController extends Controller
 
         // echo $isi_laporan;
         // return;
-        $foto = $request->foto;
-
+        $nama = "";
+        // Jika File Foto Ada
+        if ($request->hasFile('foto')) {
+            $nama = time() . $request->foto->getClientOriginalName();
+            $request->foto->move('images', $nama);
+        }
         DB::table('pengaduan')
             ->where('id_pengaduan', $id)
             ->update([
                 'isi_laporan' => $isi_laporan,
-                'foto' => $foto
+                'foto' => $nama
             ]);
 
         return redirect('/home');

@@ -12,7 +12,13 @@
           <li class="nav-item">
           <a class="nav-link" href="{{url('isi-pengaduan')}}">Buat Pengaduan</a>
           </li>
+          <div style="position: absolute; right:20px;">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('/logout')}}">Logout</a>
+              </li>
+          </div>
       </ul>
+      
       </div>
   </div>
 </nav>
